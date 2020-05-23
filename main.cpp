@@ -69,9 +69,12 @@ int main(void){
 
             vectorVector.push_back(curVect);
         }
-        //vectorVector.at(0) = vectorVector.at(0) + vectorVector.at(1);
-        VectorVert a(*vectorVector.at(0));
-        VectorHor b(*vectorVector.at(1));
+        VectorVert a(1000000, "outA.txt");
+        VectorHor b(1000000, "outB.txt");
+        for (int i = 0; i < 1000000; i++) {
+            a.set_i(i, 1);
+            b.set_i(i, 2);
+        }
         a = a + b;
         inputFile.close();
         /*for (const auto& vect : vectorVector) {
