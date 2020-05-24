@@ -11,7 +11,7 @@ class VectorHor: public Vector{
            ~VectorHor() = default;
            using Vector::operator=;
            void Print() const;
-           friend VectorHor operator*(const Vector& first, const Vector& second);
+           friend double operator*(const Vector& first, const Vector& second);
            friend VectorHor operator-(const Vector& first, const Vector& second);
            friend VectorHor operator+(const Vector& first, const Vector& second);
 };
