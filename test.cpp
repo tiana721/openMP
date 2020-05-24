@@ -76,13 +76,15 @@ int test4()
 int test5()
 {
     string file = "";
-    VectorHor v2(2, file), v1(2, file), res(2, file);
+    VectorHor v2(2, file);
+    VectorVert v1(2, file);
+    double res = 0;
     v1.set_i(0, 1);
     v1.set_i(1, 1);
     v2.set_i(0, 2);
     v2.set_i(1, 1);
     res = v1 * v2;
-    if (((res[0] >= 2) && (res[0] <= 2)) && ((res[1] >= 1) && (res[1] <= 1))) {
+    if (res == 3) {
         cout<<"Test5: OK"<<endl;
         return 0;
     }
