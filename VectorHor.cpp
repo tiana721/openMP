@@ -77,24 +77,24 @@ VectorHor operator-(const Vector& first, const Vector& second) {
 }
 
 
-VectorHor operator*(const Vector& first, const Vector& second) {
+double operator*(const Vector& first, const Vector& second) {
     if (first.get_size() != second.get_size()) {
         //std::cout << "Different sizes" << std::endl;
         throw std::invalid_argument("Different sizes");
     }
 
-    VectorHor res = VectorHor(first.get_size(), first.get_file());
+    double res = 0;
 
     int i = 0;
-    //std::chrono::time_point<std::chrono::system_clock> start = std::chrono::system_clock::now();
+    std::chrono::time_point<std::chrono::system_clock> start = std::chrono::system_clock::now();
     omp_set_num_threads(2);
     #pragma omp parallel for shared(first, second, res) private(i)
-    for(i = 0; i < res.get_size(); ++i) {
-        res[i] = first[i] * second[i];
+    for(i = 0; i < first.get_size(); ++i) {
+        res += first.get_i(i) * second.get_i(i);
     }
-    /* std::chrono::time_point<std::chrono::system_clock> end = std::chrono::system_clock::now();
+    std::chrono::time_point<std::chrono::system_clock> end = std::chrono::system_clock::now();
     int elapsed_ms = static_cast<int>(std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count());
-    std::cout << "Addition operator runtime is " << elapsed_ms << " ms\n";*/
+    std::cout << " operator* runtime is " << elapsed_ms << " ms\n";
     return res;
 }
 
